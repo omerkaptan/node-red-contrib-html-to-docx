@@ -10,6 +10,6 @@
     }
   },
   "dependencies": {
-    "html-to-docx" : "latest"
+    "html-to-docx" : "^1.6.4"
   }
 }
