@@ -1,5 +1,5 @@
 const fs = require("fs");
-const HTMLtoDOCX = require("C:\\Users\\omer.kaptan\\node_modules\\html-to-docx\\dist\\html-to-docx.umd");
+const HTMLtoDOCX = require("html-to-docx");
 const filePath = "C:\\Users\\omer.kaptan\\test.docx";
 
 const printDocx = async (html, options) => {
