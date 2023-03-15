@@ -1,14 +1,15 @@
 const fs = require("fs");
 const HTMLtoDOCX = require("html-to-docx");
-const filePath = "C:\\Users\\omer.kaptan\\test.docx";
-
-const printDocx = async (html, options) => {
+const printDocx = async (html, filename, options) => {
+  const filePath = filename || "";
   const htmlString = html || "testing";
-  const fileBuffer = await HTMLtoDOCX(htmlString, null, {});
-
+  const optionsObj = options || {}
+  const fileBuffer = await HTMLtoDOCX(htmlString, null, optionsObj);
   fs.writeFile(filePath, fileBuffer, (error) => {
     if (error) {
       return error;
+    } else {
+      // TODO: Başarı Durumunu return ederken Arayüzdeki Seçime Göre Ele Al <buffer|filepath>
     }
   });
 };
@@ -16,11 +17,12 @@ const printDocx = async (html, options) => {
 module.exports = function (RED) {
   function html2Docx(config) {
     RED.nodes.createNode(this, config);
-    var node = this;
+    const node = this;
+    let {Output} = config
     node.on("input", async (msg, send, done) => {
       if (msg.hasOwnProperty("payload")) {
         try {
-          const docx = await printDocx(msg.payload, this.options);
+          const docx = await printDocx(msg.payload, msg.filename, msg.options);
           msg.payload = docx || "1";
           send(msg);
           done();
