@@ -4,11 +4,12 @@ const HTMLtoDOCX = require("html-to-docx");
 const writeFileAsync = promisify(fs.writeFile);
 const printDocx = async (html, filename, options) => {
   const filePath = filename || "";
-  const htmlString = html || "testing";
+  const htmlString = html || "";
   const optionsObj = options || {};
-  const fileBuffer = await HTMLtoDOCX(htmlString, null, optionsObj)
-  writeFileAsync(filePath, fileBuffer);
-  return fileBuffer;
+  const fileBuffer = await HTMLtoDOCX(htmlString, null, optionsObj);
+  if (options.output === "Buffer") return fileBuffer;
+  else writeFileAsync(filePath, fileBuffer);
+  return filePath;
 };
 
 module.exports = function (RED) {
@@ -19,10 +20,9 @@ module.exports = function (RED) {
     node.on("input", async (msg, send, done) => {
       if (msg.hasOwnProperty("payload")) {
         try {
-          let docx = await printDocx(msg.payload, msg.filename, msg.options)
-            .then((fileBuffer) => {
-              console.log("File buffer:", fileBuffer);
-              msg.payload = docx || "1";
+          await printDocx(msg.payload, msg.filename, { output, ...msg.options })
+            .then((res) => {
+              msg.payload = res || "1";
               send(msg);
               done();
             })
