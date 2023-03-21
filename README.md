@@ -1,6 +1,6 @@
 # HTML to DOCX Node
 
-The HTML to DOCX node converts HTML content to a DOCX file.
+The HTML to DOCX node converts HTML content to a DOCX file for node-red.
 
 ## Installation
 
