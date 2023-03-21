@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "html to docx converter",
   "author": "Ömer Kaptan",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/omerkaptan/node-red-contrib-html-to-docx"

@@ -1,0 +1,43 @@
+<script type="text/html" data-template-name="html2docx">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-output"><i class="fa fa-print"></i> Output</label>
+    <select id="node-input-output">
+      <option>Filepath</option>
+      <option>Buffer</option>
+    </select>
+  </div>
+</script>
+
+<script type="text/html" data-help-name="html2docx">
+  <p>flename: Specifies the name of the DOCX file to be saved.</p>
+  <p>
+    output: Specifies the output type. It can take the values "Buffer" or
+    "file".
+  </p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("html2docx", {
+    category: "function",
+    color: "#E9967A",
+    defaults: {
+      name: { value: "" },
+      output: { value: "Buffer" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-file-word-o",
+    label: function () {
+      return this.name || "html to docx";
+    },
+    labelStyle: function () {
+      return this.name ? "node_label_italic" : "";
+    },
+    paletteLabel: "html to docx",
+    oneditprepare: () => {},
+  });
+</script>
