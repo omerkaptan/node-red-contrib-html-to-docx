@@ -7,7 +7,7 @@ The HTML to DOCX node converts HTML content to a DOCX file for node-red.
 To install the package, run the following command in your Node-RED user directory (typically `~/.node-red`):
 
 ```bash
-npm install html-to-docx
+npm install node-red-contrib-html-to-docx
 ```
 
 ## Usage
