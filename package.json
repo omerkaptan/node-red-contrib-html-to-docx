@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-html-to-docx",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The HTML to DOCX node converts HTML content to a DOCX file for node-red.",
   "author": "Ömer Kaptan",
   "contributors": [
